@@ -1,4 +1,5 @@
-文项目援引自：https://github.com/RicheyJang/RJFireWall，一个基于Netfilter、Netlink的Linux传输层状态检测防火墙，支持NAT，仅用于学习与交流（华中科技大学2021学年网络安全课程设计项目）。本项目为2025年江苏大学信息安全入侵防御检测系统课程设计，如有侵权可告知删除，仅供交流学习
+文项目援引自：https://github.com/RicheyJang/RJFireWall。
+一个基于Netfilter、Netlink的Linux传输层状态检测防火墙，支持NAT，仅用于学习与交流（华中科技大学2021学年网络安全课程设计项目）。本项目为2025年江苏大学信息安全入侵防御检测系统课程设计，如有侵权可告知删除，仅供交流学习
 
 # RJ FireWall
 
