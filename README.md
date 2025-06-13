@@ -137,8 +137,15 @@ lsmod | grep myfw
 
 
 本文在源项目的基础上，删除了过旧版本内核的一些函数使用情况，在6.12.25内核版本中测试没有任何问题
-
 除此之外，为了更好的方便阅读项目，本文从数据链的流转情况进行分析，且将项目中的所有代码都写上了详细注释(ai写的)，方便大家学习
 
 除此之外，略微介绍以下各个文件夹的情况
 首先，kernel_mod文件夹中的helpers文件夹，里面的conn_helper.c就是实现红黑树管理状态连接的完整实现，其中的红黑树是使用linux内核的红黑树api接口调用的，并且kernel_mod文件夹中的所有文件都使用了读写锁来确保安全访问控制，在代码中可以清晰的看到
+
+另外我再把答辩的问题列出，方便大家阅读项目：
+问题1：防火墙的规则匹配最终是在哪里实现的
+答：具体在kernel_mod/helpers/rule_hepler.c的matchIPRules里面实现，在该函数中可以清晰看到if的判断，在/hooks/hook_main.c的72行进行调用，最终return action，告诉netfilter如何操作数据包
+问题2:防火墙是怎么拦截包的
+答：在kernel_mod/main_mod.c中注册netfilter钩子，告诉系统一旦有数据包通过，需要先通过hook_main函数进行处理，再决定该数据包最终的流向，drop或者accept
+问题3：规则或者日志是如何保存的
+答：kernel_mod/include/helper.h中定义了IPrule和IPlog的结构体，最后通过指针应用该结构体，保存规则和日志数据
